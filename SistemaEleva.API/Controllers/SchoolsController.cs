@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -25,30 +26,29 @@ namespace SistemaEleva.API.Controllers
         public async Task<IActionResult> GetSchools()
         {
             var schools = await _repo.GetSchools();
-
-            var schoolsToReturn = _mapper.Map<IEnumerable<SchoolForListDto>>(schools);
+            var schoolsToReturn = schools.ToList();
 
             return Ok(schoolsToReturn);
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> RegisterSchool(SchoolForRegisterDto schoolForRegisterDto)
+        public async Task<IActionResult> RegisterSchool([FromBody] string name)
         {
-            schoolForRegisterDto.Name = schoolForRegisterDto.Name.ToLower();
+            name = name.ToLower();
 
-            if (await _repo.SchoolExists(schoolForRegisterDto.Name))
+            if (await _repo.SchoolExists(name))
                 return BadRequest("School already exists");
 
             var schoolToCreate = new School
             {
-                Name = schoolForRegisterDto.Name
+                Name = name
             };
 
             var createdSchool = await _repo.CreateSchool(schoolToCreate);
             if (await _repo.SaveAll())
                 return StatusCode(201);
 
-            throw new Exception($"Creating school {schoolForRegisterDto.Name} failed on save");
+            throw new Exception($"Creating school {name} failed on save");
         }
 
         [HttpGet("{id}")]
@@ -56,17 +56,20 @@ namespace SistemaEleva.API.Controllers
         {
             var school = await _repo.GetSchool(id);
 
-            var schoolToReturn = _mapper.Map<SchoolForDetailedDto>(school);
-
             return Ok(school);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSchools(int id, SchoolForUpdateDto schoolForUpdateDto)
+        public async Task<IActionResult> UpdateSchools(int id, School schoolForUpdate)
         {
             var schoolFromRepo = await _repo.GetSchool(id);
 
-            _mapper.Map(schoolForUpdateDto, schoolFromRepo);
+            schoolFromRepo.Name = schoolForUpdate.Name;
+            schoolFromRepo.Address = schoolForUpdate.Address;
+            schoolFromRepo.City = schoolForUpdate.City;
+            schoolFromRepo.Classes = schoolForUpdate.Classes;
+            schoolFromRepo.Headmaster = schoolForUpdate.Headmaster;
+            schoolFromRepo.PhoneNumber = schoolForUpdate.PhoneNumber;
 
             if (await _repo.SaveAll())
                 return NoContent();

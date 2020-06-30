@@ -33,7 +33,7 @@ namespace SistemaEleva.API.Migrations
                     Number = table.Column<string>(nullable: true),
                     Year = table.Column<string>(nullable: true),
                     MaxStudends = table.Column<int>(nullable: false),
-                    SchoolId = table.Column<int>(nullable: true)
+                    SchoolId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +43,7 @@ namespace SistemaEleva.API.Migrations
                         column: x => x.SchoolId,
                         principalTable: "Schools",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -57,24 +57,17 @@ namespace SistemaEleva.API.Migrations
                     Mother = table.Column<string>(nullable: true),
                     Father = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
-                    SchoolId = table.Column<int>(nullable: true),
-                    ClassroomId = table.Column<int>(nullable: true)
+                    ClassId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Students_Class_ClassroomId",
-                        column: x => x.ClassroomId,
+                        name: "FK_Students_Class_ClassId",
+                        column: x => x.ClassId,
                         principalTable: "Class",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Students_Schools_SchoolId",
-                        column: x => x.SchoolId,
-                        principalTable: "Schools",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -83,14 +76,9 @@ namespace SistemaEleva.API.Migrations
                 column: "SchoolId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_ClassroomId",
+                name: "IX_Students_ClassId",
                 table: "Students",
-                column: "ClassroomId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Students_SchoolId",
-                table: "Students",
-                column: "SchoolId");
+                column: "ClassId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

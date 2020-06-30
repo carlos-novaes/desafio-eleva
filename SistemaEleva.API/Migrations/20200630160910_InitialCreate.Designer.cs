@@ -9,7 +9,7 @@ using SistemaEleva.API.Data;
 namespace SistemaEleva.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200630141649_InitialCreate")]
+    [Migration("20200630160910_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,7 @@ namespace SistemaEleva.API.Migrations
                     b.Property<string>("Number")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("SchoolId")
+                    b.Property<int>("SchoolId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Year")
@@ -75,7 +75,7 @@ namespace SistemaEleva.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ClassroomId")
+                    b.Property<int>("ClassId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateOfBirth")
@@ -93,34 +93,29 @@ namespace SistemaEleva.API.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("SchoolId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassroomId");
-
-                    b.HasIndex("SchoolId");
+                    b.HasIndex("ClassId");
 
                     b.ToTable("Students");
                 });
 
             modelBuilder.Entity("SistemaEleva.API.Models.Class", b =>
                 {
-                    b.HasOne("SistemaEleva.API.Models.School", "School")
+                    b.HasOne("SistemaEleva.API.Models.School", null)
                         .WithMany("Classes")
-                        .HasForeignKey("SchoolId");
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SistemaEleva.API.Models.Student", b =>
                 {
-                    b.HasOne("SistemaEleva.API.Models.Class", "Classroom")
+                    b.HasOne("SistemaEleva.API.Models.Class", null)
                         .WithMany("Students")
-                        .HasForeignKey("ClassroomId");
-
-                    b.HasOne("SistemaEleva.API.Models.School", "School")
-                        .WithMany("Students")
-                        .HasForeignKey("SchoolId");
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

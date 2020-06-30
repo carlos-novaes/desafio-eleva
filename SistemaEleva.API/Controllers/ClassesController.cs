@@ -11,25 +11,53 @@ using SistemaEleva.API.Models;
 namespace SistemaEleva.API.Controllers
 {
     [ApiController]
-    [Route("api/schools/{schoolId}/[controller]")]
+    [Route("api/[controller]")]
     public class ClassesController : ControllerBase
     {
-        private readonly ISchoolRepository _schoolRepository;
-        private readonly IMapper _mapper;
-        public ClassesController(ISchoolRepository schoolRepository, IMapper mapper)
+        private readonly IClassRepository _classRepository;
+        public ClassesController(IClassRepository classRepository)
         {
-            _mapper = mapper;
-            _schoolRepository = schoolRepository;
+            _classRepository = classRepository;
         }
 
-        [HttpGet]
+        [HttpGet("getClasses")]
         public async Task<IActionResult> GetClasses(int schoolId)
         {
-            var school = await _schoolRepository.GetSchool(schoolId);
-
-            var classes = school.Classes.ToList();
+            var classes = await _classRepository.GetClasses(schoolId);
 
             return Ok(classes);
+        }
+
+        [HttpPost("createClass")]
+        public async Task<IActionResult> CreateClass(Class classToCreate)
+        {
+            classToCreate.Name = classToCreate.Name.ToLower();
+
+            if (await _classRepository.ClassExists(classToCreate))
+                return BadRequest("School already exists");
+
+            var createdSchool = await _classRepository.CreateClass(classToCreate);
+            if (await _classRepository.SaveAll())
+                return StatusCode(201);
+
+            throw new Exception($"Creating school {classToCreate.Name} failed on save");
+        }
+
+        [HttpPut("editClass")]
+        public async Task<IActionResult> UpdateSchools(Class classForUpdate)
+        {
+            var classFromDb = await _classRepository.GetClass(classForUpdate.Id);
+
+            classFromDb.Name = classForUpdate.Name;
+            classFromDb.MaxStudends = classForUpdate.MaxStudends;
+            classFromDb.Students = classForUpdate.Students;
+            classFromDb.Year = classForUpdate.Year;
+
+
+            if (await _classRepository.SaveAll())
+                return NoContent();
+
+            throw new Exception($"Updating school {classForUpdate.Name} failed on save");
         }
     }
 }

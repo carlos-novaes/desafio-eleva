@@ -10,7 +10,6 @@ namespace SistemaEleva.API.Models
         public string Address { get; set; }
         public string City { get; set; }
         public string PhoneNumber { get; set; }
-        public ICollection<Student> Students { get; set; }
         public ICollection<Class> Classes { get; set; }
     }
 }

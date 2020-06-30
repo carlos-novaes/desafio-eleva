@@ -41,6 +41,8 @@ namespace SistemaEleva.API
             services.AddCors();
             services.AddAutoMapper(typeof(SchoolRepository).Assembly);
             services.AddScoped<ISchoolRepository, SchoolRepository>();
+            services.AddScoped<IClassRepository, ClassRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
