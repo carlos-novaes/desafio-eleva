@@ -100,7 +100,7 @@ namespace SistemaEleva.API.Migrations
 
             modelBuilder.Entity("SistemaEleva.API.Models.Class", b =>
                 {
-                    b.HasOne("SistemaEleva.API.Models.School", null)
+                    b.HasOne("SistemaEleva.API.Models.School", "School")
                         .WithMany("Classes")
                         .HasForeignKey("SchoolId");
                 });

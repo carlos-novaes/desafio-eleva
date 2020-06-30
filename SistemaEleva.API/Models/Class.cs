@@ -8,6 +8,7 @@ namespace SistemaEleva.API.Models
         public string Number { get; set; }
         public string Year { get; set; }
         public int MaxStudends { get; set; }
+        public School School { get; set; }
         public ICollection<Student> Students { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using SistemaEleva.API.Data;
 namespace SistemaEleva.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200630025937_InitialCreate")]
+    [Migration("20200630125753_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,7 +102,7 @@ namespace SistemaEleva.API.Migrations
 
             modelBuilder.Entity("SistemaEleva.API.Models.Class", b =>
                 {
-                    b.HasOne("SistemaEleva.API.Models.School", null)
+                    b.HasOne("SistemaEleva.API.Models.School", "School")
                         .WithMany("Classes")
                         .HasForeignKey("SchoolId");
                 });
