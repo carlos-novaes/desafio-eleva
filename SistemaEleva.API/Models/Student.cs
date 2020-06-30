@@ -10,6 +10,7 @@ namespace SistemaEleva.API.Models
         public string Mother { get; set; }
         public string Father { get; set; }
         public string PhoneNumber { get; set; }
+        public School School { get; set; }
         public Class Classroom { get; set; }
 
     }

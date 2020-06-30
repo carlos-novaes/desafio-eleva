@@ -57,6 +57,7 @@ namespace SistemaEleva.API.Migrations
                     Mother = table.Column<string>(nullable: true),
                     Father = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
+                    SchoolId = table.Column<int>(nullable: true),
                     ClassroomId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -66,6 +67,12 @@ namespace SistemaEleva.API.Migrations
                         name: "FK_Students_Class_ClassroomId",
                         column: x => x.ClassroomId,
                         principalTable: "Class",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Students_Schools_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "Schools",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -79,6 +86,11 @@ namespace SistemaEleva.API.Migrations
                 name: "IX_Students_ClassroomId",
                 table: "Students",
                 column: "ClassroomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Students_SchoolId",
+                table: "Students",
+                column: "SchoolId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

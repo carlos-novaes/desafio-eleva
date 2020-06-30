@@ -91,9 +91,14 @@ namespace SistemaEleva.API.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("SchoolId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClassroomId");
+
+                    b.HasIndex("SchoolId");
 
                     b.ToTable("Students");
                 });
@@ -110,6 +115,10 @@ namespace SistemaEleva.API.Migrations
                     b.HasOne("SistemaEleva.API.Models.Class", "Classroom")
                         .WithMany("Students")
                         .HasForeignKey("ClassroomId");
+
+                    b.HasOne("SistemaEleva.API.Models.School", "School")
+                        .WithMany("Students")
+                        .HasForeignKey("SchoolId");
                 });
 #pragma warning restore 612, 618
         }

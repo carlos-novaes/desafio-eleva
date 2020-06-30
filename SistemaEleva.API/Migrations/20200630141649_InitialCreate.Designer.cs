@@ -9,7 +9,7 @@ using SistemaEleva.API.Data;
 namespace SistemaEleva.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200630125753_InitialCreate")]
+    [Migration("20200630141649_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,9 +93,14 @@ namespace SistemaEleva.API.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("SchoolId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClassroomId");
+
+                    b.HasIndex("SchoolId");
 
                     b.ToTable("Students");
                 });
@@ -112,6 +117,10 @@ namespace SistemaEleva.API.Migrations
                     b.HasOne("SistemaEleva.API.Models.Class", "Classroom")
                         .WithMany("Students")
                         .HasForeignKey("ClassroomId");
+
+                    b.HasOne("SistemaEleva.API.Models.School", "School")
+                        .WithMany("Students")
+                        .HasForeignKey("SchoolId");
                 });
 #pragma warning restore 612, 618
         }
