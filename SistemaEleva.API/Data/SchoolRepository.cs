@@ -21,7 +21,7 @@ namespace SistemaEleva.API.Data
 
         public async Task<bool> SchoolExists(string schoolName)
         {
-            if (await _context.Schools.AnyAsync(s => s.Name == schoolName))
+            if (await _context.Schools.AnyAsync(s => s.Name.ToLower() == schoolName.ToLower()))
                 return true;
 
             return false;

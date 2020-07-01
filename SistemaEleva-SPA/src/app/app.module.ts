@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,7 +21,8 @@ import { NewSchoolComponent } from './new-school/new-school.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
-  { path: 'schools-list', component: SchoolListComponent }
+  { path: 'schools-list', component: SchoolListComponent },
+  { path: 'school/:id', component: SchoolUpdateComponent }
 ];
 
 @NgModule({
@@ -42,6 +44,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes

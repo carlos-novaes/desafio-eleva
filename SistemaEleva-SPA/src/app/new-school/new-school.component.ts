@@ -6,7 +6,7 @@ import { School } from '../_services/interfaces';
 @Component({
   selector: 'app-new-school',
   templateUrl: './new-school.component.html',
-  styleUrls: ['./new-school.component.css']
+  styleUrls: ['./new-school.component.scss']
 })
 export class NewSchoolComponent implements OnInit {
   form: FormGroup;

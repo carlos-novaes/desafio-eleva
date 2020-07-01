@@ -1,0 +1,20 @@
+.block-level {
+  max-width: 80%;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  text-align: -webkit-center;
+}
+.row {
+  width: 70%;
+  margin: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  height: 2rem;
+  width: 180px;
+}

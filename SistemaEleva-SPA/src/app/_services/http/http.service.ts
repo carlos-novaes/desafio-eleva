@@ -14,4 +14,16 @@ export class HttpService {
   createSchool(schoolToCreate: any) {
     return this.http.post(`${this.baseUrl}/schools/create`, schoolToCreate);
   }
+
+  getSchools() {
+    return this.http.get(`${this.baseUrl}/schools/`);
+  }
+
+  getSchoolDetails(schoolId: number) {
+    return this.http.get(`${this.baseUrl}/schools/${schoolId}`);
+  }
+
+  updateSchool(school: any) {
+    return this.http.put(`${this.baseUrl}/schools/${school.id}`, school);
+  }
 }

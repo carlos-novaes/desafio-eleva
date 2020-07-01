@@ -1,1 +1,14 @@
-<p>school-list works!</p>
+<div class="block-level mat-elevation-z3">
+  <div class="mat-elevation-z3 card" *ngFor="let school of schools">
+    <div class="information">
+      <h2>{{ school.name }}</h2>
+      <p>{{ school.phoneNumber }}</p>
+    </div>
+    <div class="buttons">
+      <a href="/school/{{ school.id }}"
+        ><button mat-flat-button color="primary">Editar detalhes</button></a
+      >
+      <a href=""><button mat-flat-button color="primary">Turmas</button></a>
+    </div>
+  </div>
+</div>

@@ -39,10 +39,9 @@ export class MainPageComponent implements OnInit {
           phoneNumber: null
         };
         console.log(schoolToCreate);
-        this.http.createSchool(schoolToCreate).subscribe((data: School) => {
-          console.log(data);
+        this.http.createSchool(schoolToCreate).subscribe((schoolId: number) => {
+          this.router.navigateByUrl(`/school/${schoolId}`);
         });
-        // this.router.navigateByUrl('/');
       } else {
         console.log('canceled');
       }

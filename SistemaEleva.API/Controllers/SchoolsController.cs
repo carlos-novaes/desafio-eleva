@@ -34,19 +34,12 @@ namespace SistemaEleva.API.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> RegisterSchool([FromBody] School schoolToCreate)
         {
-            schoolToCreate.Name = schoolToCreate.Name.ToLower();
-
             if (await _repo.SchoolExists(schoolToCreate.Name))
                 return BadRequest("School already exists");
 
-            // var schoolToCreate = new School
-            // {
-            //     Name = name
-            // };
-
             var createdSchool = await _repo.CreateSchool(schoolToCreate);
             if (await _repo.SaveAll())
-                return Ok(createdSchool);
+                return Ok(createdSchool.Id);
 
             throw new Exception($"Creating school {schoolToCreate.Name} failed on save");
         }

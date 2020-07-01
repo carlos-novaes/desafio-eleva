@@ -1,1 +1,51 @@
-<p>school-update works!</p>
+<div class="block-level mat-elevation-z3">
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Id</mat-label>
+      <input name="id" matInput [(ngModel)]="id" disabled />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input name="name" matInput [(ngModel)]="name" disabled />
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Cidade</mat-label>
+      <input name="city" matInput [(ngModel)]="city" placeholder="Cidade da Escola" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Telefone</mat-label>
+      <input
+        name="phoneNumber"
+        matInput
+        [(ngModel)]="phoneNumber"
+        placeholder="Telefone da Escola"
+      />
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Diretor</mat-label>
+      <input name="headmaster" matInput [(ngModel)]="headmaster" placeholder="Diretor da Escola" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Endereço</mat-label>
+      <input name="address" matInput [(ngModel)]="address" placeholder="Endereço da Escola" />
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Turmas</mat-label>
+      <input name="classes" matInput [(ngModel)]="classes" placeholder="Turmas da Escola" />
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="saveChanges()">
+      Criar Turma
+    </button>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" (click)="saveChanges()">
+      Salvar Mudanças
+    </button>
+  </div>
+</div>
