@@ -32,23 +32,23 @@ namespace SistemaEleva.API.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> RegisterSchool([FromBody] string name)
+        public async Task<IActionResult> RegisterSchool([FromBody] School schoolToCreate)
         {
-            name = name.ToLower();
+            schoolToCreate.Name = schoolToCreate.Name.ToLower();
 
-            if (await _repo.SchoolExists(name))
+            if (await _repo.SchoolExists(schoolToCreate.Name))
                 return BadRequest("School already exists");
 
-            var schoolToCreate = new School
-            {
-                Name = name
-            };
+            // var schoolToCreate = new School
+            // {
+            //     Name = name
+            // };
 
             var createdSchool = await _repo.CreateSchool(schoolToCreate);
             if (await _repo.SaveAll())
-                return StatusCode(201);
+                return Ok(createdSchool);
 
-            throw new Exception($"Creating school {name} failed on save");
+            throw new Exception($"Creating school {schoolToCreate.Name} failed on save");
         }
 
         [HttpGet("{id}")]

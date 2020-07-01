@@ -1,0 +1,10 @@
+<div class="block-level mat-elevation-z3">
+  <h1>Bem vindo!</h1>
+  <h3>Este é o sistema de gerenciamento de escolas da cidade de Townsville!</h3>
+  <div class="buttons">
+    <button mat-raised-button color="primary" [routerLink]="['/schools-list']">Ver Escolas</button>
+    <button mat-raised-button color="accent" (click)="openNewSchoolDialog()">
+      Cadastrar Escola
+    </button>
+  </div>
+</div>
