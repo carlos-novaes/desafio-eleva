@@ -9,7 +9,7 @@ export interface School {
 
 export interface Class {
   name: string;
-  year: string;
+  year: number;
   schoolId: number;
   students: Array<Student>;
 }

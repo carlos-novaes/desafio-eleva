@@ -27,7 +27,14 @@ namespace SistemaEleva.API.Data
             return student;
         }
 
-        public async Task<IEnumerable<Student>> GetStudents(int classId)
+        public async Task<IEnumerable<Student>> GetStudents()
+        {
+            var students = await _context.Students.ToListAsync();
+
+            return students;
+        }
+
+        public async Task<IEnumerable<Student>> GetStudentsByClassId(int classId)
         {
             var students = await _context.Students.Where(s => s.ClassId == classId).ToListAsync();
 

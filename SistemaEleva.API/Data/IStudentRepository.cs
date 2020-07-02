@@ -8,7 +8,8 @@ namespace SistemaEleva.API.Data
     {
         Task<Student> CreateStudent(Student student);
         Task<bool> StudentExists(Student student);
-        Task<IEnumerable<Student>> GetStudents(int classId);
+        Task<IEnumerable<Student>> GetStudents();
+        Task<IEnumerable<Student>> GetStudentsByClassId(int classId);
         Task<Student> GetStudent(int id);
         Task<bool> SaveAll();
     }

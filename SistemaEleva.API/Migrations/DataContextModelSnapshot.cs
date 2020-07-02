@@ -28,8 +28,8 @@ namespace SistemaEleva.API.Migrations
                     b.Property<int>("SchoolId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Year")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

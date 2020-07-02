@@ -18,10 +18,10 @@ namespace SistemaEleva.API.Controllers
             _studentRepository = studentRepository;
         }
 
-        [HttpGet("getStudents")]
-        public async Task<IActionResult> GetStudents(int classId)
+        [HttpGet("getStudentsByClassId")]
+        public async Task<IActionResult> GetStudentsByClassId(int classId)
         {
-            var students = await _studentRepository.GetStudents(classId);
+            var students = await _studentRepository.GetStudentsByClassId(classId);
 
             return Ok(students);
         }
@@ -33,11 +33,11 @@ namespace SistemaEleva.API.Controllers
             return Ok(student);
         }
 
-        [HttpGet("createStudent")]
+        [HttpPost("createStudent")]
         public async Task<IActionResult> CreateStudent(Student studentToCreate)
         {
             if (await _studentRepository.StudentExists(studentToCreate))
-                return BadRequest("School already exists");
+                return BadRequest("Student already exists");
 
             var createdSchool = await _studentRepository.CreateStudent(studentToCreate);
             if (await _studentRepository.SaveAll())

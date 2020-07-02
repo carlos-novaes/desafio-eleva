@@ -9,7 +9,7 @@ using SistemaEleva.API.Data;
 namespace SistemaEleva.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200702022039_InitialCreate")]
+    [Migration("20200702165219_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,8 +30,8 @@ namespace SistemaEleva.API.Migrations
                     b.Property<int>("SchoolId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Year")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

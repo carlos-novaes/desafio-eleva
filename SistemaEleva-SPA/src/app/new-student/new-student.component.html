@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<div mat-dialog-content class="container">
+  <mat-form-field>
+    <mat-label>Id Turma</mat-label>
+    <input name="classId" matInput [(ngModel)]="classId" disabled />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nome do Estudante</mat-label>
+    <input name="name" matInput [(ngModel)]="name" placeholder="Joãozinho" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Data de Nascimento</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="dob" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-content class="container">
+  <mat-form-field>
+    <mat-label>Nome da Mãe</mat-label>
+    <input name="mother" matInput [(ngModel)]="mother" placeholder="Julia" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nome do Pai</mat-label>
+    <input name="father" matInput [(ngModel)]="father" placeholder="José" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Telefone</mat-label>
+    <input name="phoneNumber" matInput [(ngModel)]="phoneNumber" placeholder="(21) 98765-1234" />
+  </mat-form-field>
+</div>
+
+<mat-dialog-actions style="justify-content: space-between;">
+  <button mat-flat-button class="mat-raised-button cancel" (click)="close()">
+    Cancel
+  </button>
+  <button
+    mat-flat-button
+    style="width: 150px;"
+    color="primary"
+    class="mat-raised-button mat-primary"
+    (click)="saveChanges()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

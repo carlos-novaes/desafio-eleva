@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,14 +22,14 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { SchoolListComponent } from './school-list/school-list.component';
 import { SchoolUpdateComponent } from './school-update/school-update.component';
 import { NewSchoolComponent } from './new-school/new-school.component';
-import { ClassListComponent } from './class-list/class-list.component';
 import { NewClassComponent } from './new-class/new-class.component';
+import { NewStudentComponent } from './new-student/new-student.component';
+import { StudentListComponent } from './student-list/student-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'schools-list', component: SchoolListComponent },
-  { path: 'school/:id', component: SchoolUpdateComponent },
-  { path: 'classes/:schoolId', component: ClassListComponent }
+  { path: 'school/:id', component: SchoolUpdateComponent }
 ];
 
 @NgModule({
@@ -38,8 +40,9 @@ const appRoutes: Routes = [
     SchoolListComponent,
     SchoolUpdateComponent,
     NewSchoolComponent,
-    ClassListComponent,
-    NewClassComponent
+    NewClassComponent,
+    NewStudentComponent,
+    StudentListComponent
   ],
   imports: [
     BrowserModule,
@@ -55,12 +58,19 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatExpansionModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     RouterModule.forRoot(
       appRoutes
       // { enableTracing: true } // debugging purposes only
     )
   ],
-  entryComponents: [NewSchoolComponent],
+  entryComponents: [
+    NewSchoolComponent,
+    NewClassComponent,
+    NewStudentComponent,
+    StudentListComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

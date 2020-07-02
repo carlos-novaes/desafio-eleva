@@ -16,6 +16,12 @@
     font-weight: 500;
     font-size: 1.4rem;
   }
+
+  button {
+    height: 2rem;
+    width: 180px;
+    margin: 0.5rem;
+  }
 }
 .row {
   width: 70%;
@@ -25,11 +31,12 @@
   align-items: center;
 }
 
-button {
-  height: 2rem;
-  width: 180px;
-}
-
-table {
+table.mat-table {
   width: 100%;
+  text-align: center;
+
+  th {
+    font-size: 1rem;
+    text-align: center;
+  }
 }

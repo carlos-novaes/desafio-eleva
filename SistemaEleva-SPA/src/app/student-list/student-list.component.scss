@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  .cancel {
+    background-color: gray;
+    width: 150px;
+    height: 2.5rem;
+    color: white;
+  }
+}
+
+table.mat-table {
+  width: 100%;
+  text-align: center;
+
+  th {
+    font-size: 1rem;
+    text-align: center;
+  }
+}

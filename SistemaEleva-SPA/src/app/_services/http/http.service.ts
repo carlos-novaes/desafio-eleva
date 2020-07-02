@@ -34,4 +34,12 @@ export class HttpService {
   getClasses(schoolId: number) {
     return this.http.get(`${this.baseUrl}/classes/getClasses?schoolId=${schoolId}`);
   }
+
+  createStudent(studentToCreate: any) {
+    return this.http.post(`${this.baseUrl}/students/createStudent`, studentToCreate);
+  }
+
+  getStudentsByClass(classId: number) {
+    return this.http.get(`${this.baseUrl}/students/getStudentsByClassId?classId=${classId}`);
+  }
 }

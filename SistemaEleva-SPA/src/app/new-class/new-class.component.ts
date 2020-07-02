@@ -13,7 +13,7 @@ export class NewClassComponent implements OnInit {
   title: string;
   schoolId: number;
   name: string;
-  year: string;
+  year: number;
 
   constructor(
     private fb: FormBuilder,
