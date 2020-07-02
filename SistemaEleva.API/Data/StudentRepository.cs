@@ -41,7 +41,7 @@ namespace SistemaEleva.API.Data
 
         public async Task<bool> StudentExists(Student student)
         {
-            if (await _context.Students.AnyAsync(s => (s.Name == student.Name && s.ClassId == student.ClassId)))
+            if (await _context.Students.AnyAsync(s => (s.Name.ToLower() == student.Name.ToLower() && s.ClassId == student.ClassId)))
                 return true;
 
             return false;

@@ -5,6 +5,17 @@
   border-radius: 5px;
   background-color: whitesmoke;
   text-align: -webkit-center;
+
+  .accordion {
+    margin: 1rem;
+  }
+
+  .title {
+    display: flex;
+    margin: 1rem;
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
 }
 .row {
   width: 70%;
@@ -17,4 +28,8 @@
 button {
   height: 2rem;
   width: 180px;
+}
+
+table {
+  width: 100%;
 }

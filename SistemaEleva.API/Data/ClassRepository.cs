@@ -23,7 +23,7 @@ namespace SistemaEleva.API.Data
 
         public async Task<bool> ClassExists(Class classroom)
         {
-            if (await _context.Class.AnyAsync(c => (c.SchoolId == classroom.SchoolId && c.Name == classroom.Name)))
+            if (await _context.Class.AnyAsync(c => (c.SchoolId == classroom.SchoolId && c.Name.ToLower() == classroom.Name.ToLower())))
                 return true;
 
             return false;

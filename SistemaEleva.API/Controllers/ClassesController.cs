@@ -31,12 +31,10 @@ namespace SistemaEleva.API.Controllers
         [HttpPost("createClass")]
         public async Task<IActionResult> CreateClass(Class classToCreate)
         {
-            classToCreate.Name = classToCreate.Name.ToLower();
-
             if (await _classRepository.ClassExists(classToCreate))
                 return BadRequest("School already exists");
 
-            var createdSchool = await _classRepository.CreateClass(classToCreate);
+            var createdClass = await _classRepository.CreateClass(classToCreate);
             if (await _classRepository.SaveAll())
                 return StatusCode(201);
 
@@ -49,7 +47,6 @@ namespace SistemaEleva.API.Controllers
             var classFromDb = await _classRepository.GetClass(classForUpdate.Id);
 
             classFromDb.Name = classForUpdate.Name;
-            classFromDb.MaxStudends = classForUpdate.MaxStudends;
             classFromDb.Students = classForUpdate.Students;
             classFromDb.Year = classForUpdate.Year;
 

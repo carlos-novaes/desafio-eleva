@@ -10,7 +10,6 @@ export interface School {
 export interface Class {
   name: string;
   year: string;
-  maxStudents: number;
   schoolId: number;
   students: Array<Student>;
 }

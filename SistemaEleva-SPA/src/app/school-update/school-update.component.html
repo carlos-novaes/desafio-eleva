@@ -1,51 +1,92 @@
 <div class="block-level mat-elevation-z3">
-  <div class="row">
-    <mat-form-field>
-      <mat-label>Id</mat-label>
-      <input name="id" matInput [(ngModel)]="id" disabled />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Nome</mat-label>
-      <input name="name" matInput [(ngModel)]="name" disabled />
-    </mat-form-field>
-  </div>
-  <div class="row">
-    <mat-form-field>
-      <mat-label>Cidade</mat-label>
-      <input name="city" matInput [(ngModel)]="city" placeholder="Cidade da Escola" />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Telefone</mat-label>
-      <input
-        name="phoneNumber"
-        matInput
-        [(ngModel)]="phoneNumber"
-        placeholder="Telefone da Escola"
-      />
-    </mat-form-field>
-  </div>
-  <div class="row">
-    <mat-form-field>
-      <mat-label>Diretor</mat-label>
-      <input name="headmaster" matInput [(ngModel)]="headmaster" placeholder="Diretor da Escola" />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Endereço</mat-label>
-      <input name="address" matInput [(ngModel)]="address" placeholder="Endereço da Escola" />
-    </mat-form-field>
-  </div>
-  <div class="row">
-    <mat-form-field>
-      <mat-label>Turmas</mat-label>
-      <input name="classes" matInput [(ngModel)]="classes" placeholder="Turmas da Escola" />
-    </mat-form-field>
-    <button mat-raised-button color="accent" (click)="saveChanges()">
+  <mat-accordion class="accordion">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Editar Escola
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Id</mat-label>
+          <input name="id" matInput [(ngModel)]="id" disabled />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input name="name" matInput [(ngModel)]="name" disabled />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Cidade</mat-label>
+          <input name="city" matInput [(ngModel)]="city" placeholder="Cidade da Escola" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Telefone</mat-label>
+          <input
+            name="phoneNumber"
+            matInput
+            [(ngModel)]="phoneNumber"
+            placeholder="Telefone da Escola"
+          />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Diretor</mat-label>
+          <input
+            name="headmaster"
+            matInput
+            [(ngModel)]="headmaster"
+            placeholder="Diretor da Escola"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Endereço</mat-label>
+          <input name="address" matInput [(ngModel)]="address" placeholder="Endereço da Escola" />
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button color="primary" (click)="saveChanges()">
+          Salvar Mudanças
+        </button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div style="display: flex; justify-content: space-between;">
+    <span class="title">Turmas</span>
+    <button mat-raised-button color="accent" (click)="createClass()">
       Criar Turma
     </button>
   </div>
-  <div>
-    <button mat-raised-button color="primary" (click)="saveChanges()">
-      Salvar Mudanças
-    </button>
-  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="schoolId">
+      <th mat-header-cell *matHeaderCellDef>Id Escola</th>
+      <td mat-cell *matCellDef="let element">{{ element.schoolId }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef>Ano</th>
+      <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="students">
+      <th mat-header-cell *matHeaderCellDef>Alunos</th>
+      <td mat-cell *matCellDef="let element">test</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </div>

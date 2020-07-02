@@ -38,7 +38,6 @@ export class MainPageComponent implements OnInit {
           headmaster: null,
           phoneNumber: null
         };
-        console.log(schoolToCreate);
         this.http.createSchool(schoolToCreate).subscribe((schoolId: number) => {
           this.router.navigateByUrl(`/school/${schoolId}`);
         });

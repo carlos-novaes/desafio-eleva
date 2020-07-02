@@ -30,9 +30,8 @@ namespace SistemaEleva.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Number = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     Year = table.Column<string>(nullable: true),
-                    MaxStudends = table.Column<int>(nullable: false),
                     SchoolId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

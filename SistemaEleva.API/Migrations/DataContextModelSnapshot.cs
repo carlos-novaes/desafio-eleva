@@ -22,10 +22,7 @@ namespace SistemaEleva.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MaxStudends")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Number")
+                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("SchoolId")

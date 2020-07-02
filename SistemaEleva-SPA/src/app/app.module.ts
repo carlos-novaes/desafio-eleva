@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,11 +20,14 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { SchoolListComponent } from './school-list/school-list.component';
 import { SchoolUpdateComponent } from './school-update/school-update.component';
 import { NewSchoolComponent } from './new-school/new-school.component';
+import { ClassListComponent } from './class-list/class-list.component';
+import { NewClassComponent } from './new-class/new-class.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'schools-list', component: SchoolListComponent },
-  { path: 'school/:id', component: SchoolUpdateComponent }
+  { path: 'school/:id', component: SchoolUpdateComponent },
+  { path: 'classes/:schoolId', component: ClassListComponent }
 ];
 
 @NgModule({
@@ -32,7 +37,9 @@ const appRoutes: Routes = [
     MainPageComponent,
     SchoolListComponent,
     SchoolUpdateComponent,
-    NewSchoolComponent
+    NewSchoolComponent,
+    ClassListComponent,
+    NewClassComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +53,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatCardModule,
     HttpClientModule,
+    MatExpansionModule,
+    MatTableModule,
     RouterModule.forRoot(
       appRoutes
       // { enableTracing: true } // debugging purposes only

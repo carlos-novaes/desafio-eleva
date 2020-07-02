@@ -36,8 +36,6 @@ namespace SistemaEleva.API.Controllers
         [HttpGet("createStudent")]
         public async Task<IActionResult> CreateStudent(Student studentToCreate)
         {
-            studentToCreate.Name = studentToCreate.Name.ToLower();
-
             if (await _studentRepository.StudentExists(studentToCreate))
                 return BadRequest("School already exists");
 

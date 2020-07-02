@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<div mat-dialog-content class="container">
+  <mat-form-field>
+    <mat-label>Id da Escola</mat-label>
+    <input name="schoolId" matInput [(ngModel)]="schoolId" disabled />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Ano da Turma</mat-label>
+    <input name="year" matInput [(ngModel)]="year" placeholder="1º ano" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nome da Turma</mat-label>
+    <input name="name" matInput [(ngModel)]="name" placeholder="1A" />
+  </mat-form-field>
+</div>
+
+<mat-dialog-actions style="justify-content: space-between;">
+  <button mat-flat-button class="mat-raised-button cancel" (click)="close()">
+    Cancel
+  </button>
+  <button
+    mat-flat-button
+    style="width: 150px;"
+    color="primary"
+    class="mat-raised-button mat-primary"
+    (click)="saveChanges()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>
